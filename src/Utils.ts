@@ -3,8 +3,9 @@ import { parse, UrlWithParsedQuery } from 'url'
 export class Utils {
 
     public static parseUrl(url: string): UrlWithParsedQuery {
-        if (url) {
-            console.log(url);
+        if (!url) {
+            throw new Error('Empty url!');
+
         }
         const parsedUrl = parse(url, true);
         return parsedUrl;
