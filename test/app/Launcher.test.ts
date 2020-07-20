@@ -4,7 +4,7 @@ import { Launcher } from '../../src/Launcher';
 
 jest.mock('../../src/app/Server/Server', () => {
     return {
-        Server: jest.fn().mockImplementation(() => {
+        Server: jest.fn(() => {
             return {
                 createServer: () => {
                     console.log('mocked createServerImpl')
