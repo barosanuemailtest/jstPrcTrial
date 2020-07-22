@@ -6,8 +6,7 @@ jest.mock('../../src/app/Server/Server', () => {
     return {
         Server: jest.fn(() => {
             return {
-                createServer: () => {
-                    console.log('mocked createServerImpl')
+                startServer: () => {
                 }
             }
         })
@@ -15,11 +14,10 @@ jest.mock('../../src/app/Server/Server', () => {
 });
 
 describe('Launcher test suite', () => {
-    let launcher: Launcher;
     const mockedServer = mocked(Server, true);
 
     test('launch app', () => {
-        launcher = new Launcher();
+        new Launcher();
         expect(mockedServer).toHaveBeenCalled();
     });
 

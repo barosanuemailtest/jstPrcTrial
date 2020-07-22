@@ -1,6 +1,6 @@
-import { Utils } from '../src/Utils';
+import { Utils } from '../src/app/Utils';
 
-describe.skip('Utils test suite', () => {
+describe('Utils test suite', () => {
 
     it('parse simple URL correctly', () => {
         const parsedUrl = Utils.parseUrl('http://localhost:8080/login');
@@ -31,5 +31,28 @@ describe.skip('Utils test suite', () => {
         expect(() => {
             Utils.parseUrl('')
         }).toThrowError();
+    });
+
+    test('getRequestBasePath - valid request', () => {
+        const someRequest = {
+            url: 'http://localhost:8080/login'
+        } as any;
+        const requestBasePath = Utils.getRequestBasePath(someRequest);
+        expect(requestBasePath).toBe('login');
+    });
+
+    test('getRequestBasePath - no pathname request', () => {
+        const someRequest = {
+            url: 'http://localhost:8080/'
+        } as any;
+        const requestBasePath = Utils.getRequestBasePath(someRequest);
+        expect(requestBasePath).toBe('');
+    });
+
+    test('getRequestBasePath - no url valid request', () => {
+        const someRequest = {
+        } as any;
+        const requestBasePath = Utils.getRequestBasePath(someRequest);
+        expect(requestBasePath).toBe('');
     });
 })

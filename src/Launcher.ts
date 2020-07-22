@@ -9,7 +9,7 @@ export class Launcher {
     }
 
     public launchApp() {
-        this.server.createServer();
+        this.server.startServer();
     }
 
 }
